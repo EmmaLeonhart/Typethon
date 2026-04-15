@@ -14,7 +14,9 @@
       "Bash(npm install *)",
       "Bash(npm run *)",
       "Bash(npm test *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(git commit -m 'Add browser playground, TS port, and Pages deploy *)",
+      "Bash(git commit -m 'Add NumPy, TensorFlow, PyTorch, CuPy, pandas, sklearn examples *)"
     ]
   }
 }
