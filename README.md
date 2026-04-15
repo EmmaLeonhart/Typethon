@@ -1,17 +1,80 @@
 # Typethon
 
-> Scaffolded with [cleanvibe](https://github.com/Immanuelle/cleanvibe).
+> TypeScript syntax. Python runtime ABI.
 
-## About
+## What this is
 
-_TODO: Describe what this project does._
+A transpiler from a restricted subset of TypeScript to Python. The output
+is **not** idiomatic Python -- it's a compilation artifact that happens to
+be valid Python so that `import numpy` and friends just work. Per the
+project's design notes, this scopes the problem honestly:
 
-## Getting Started
+- TypeScript is the source language, with file-level pragmas declaring
+  which Python libraries the file expects.
+- Python is the runtime ABI -- whatever the transpiler emits is
+  semantically correct enough that library calls work.
+- No DOM, no Node builtins, no prototype manipulation. Algorithmic code,
+  data transforms, schema definitions, utility functions.
 
-This project was initialized with `cleanvibe new` and is intended to be developed
-with AI-assisted coding via Claude Code.
+## Install
 
 ```
-cd Typethon
-claude
+pip install -e .
+```
+
+## Use
+
+```
+typethon path/to/source.ts -o path/to/source.py
+```
+
+Or as a library:
+
+```python
+from typethon import transpile
+
+py_source = transpile(ts_source)
+```
+
+## Pragmas
+
+File-level pragmas live in `//` comments at the top of the file:
+
+```ts
+// @typethon target: python
+// @typethon import: numpy as np
+// @typethon import: pandas as pd
+
+function dotProduct(a: number[], b: number[]): number {
+    let total = 0;
+    for (let i = 0; i < a.length; i++) {
+        total = total + a[i] * b[i];
+    }
+    return total;
+}
+```
+
+## Currently supported
+
+- `function` declarations with typed params and return types
+- `if` / `else if` / `else`, `while`, `for (let i = 0; i < n; i++)`,
+  `for (const x of xs)`
+- `const` / `let` / `var` declarations (the keyword is dropped)
+- Type annotations: `number`, `string`, `boolean`, `void`, `null`,
+  `undefined`, `any`, `T[]`, `Array<T>`, union types
+- Strict equality (`===` / `!==`), logical operators (`&&`, `||`, `!`)
+- `console.log` -> `print`
+- String, comment, and template literal pass-through
+
+## Not yet supported
+
+Classes, interfaces, generics, async/await, destructuring, spread,
+arrow function bodies that aren't single expressions, template literal
+interpolation. The transpiler passes unrecognized constructs through
+verbatim, so you can incrementally hand-edit the output.
+
+## Tests
+
+```
+pytest
 ```

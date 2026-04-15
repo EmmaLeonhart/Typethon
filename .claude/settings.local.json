@@ -3,7 +3,13 @@
     "allow": [
       "Bash(gh auth *)",
       "Bash(gh repo *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m 'Add TypeScript to Python transpilation feasibility reference doc *)",
+      "Bash(git push *)",
+      "Bash(python -m pip install -e . -q)",
+      "Bash(python -m pytest -v)",
+      "Bash(python *)",
+      "Bash(git commit -m 'Add MVP TypeScript -> Python transpiler *)"
     ]
   }
 }
