@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "typethon"
+version = "0.0.1"
+description = "TypeScript syntax, Python runtime ABI. A file-level transpiler from a restricted TS subset to Python."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Emma Leonhart" }]
+license = { text = "MIT" }
+
+[project.scripts]
+typethon = "typethon.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["typethon*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
