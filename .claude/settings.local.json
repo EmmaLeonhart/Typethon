@@ -16,7 +16,10 @@
       "Bash(npm test *)",
       "Bash(node *)",
       "Bash(git commit -m 'Add browser playground, TS port, and Pages deploy *)",
-      "Bash(git commit -m 'Add NumPy, TensorFlow, PyTorch, CuPy, pandas, sklearn examples *)"
+      "Bash(git commit -m 'Add NumPy, TensorFlow, PyTorch, CuPy, pandas, sklearn examples *)",
+      "Bash(gh run *)",
+      "Bash(curl -s https://emmaleonhart.github.io/Typethon/app.js)",
+      "Bash(git commit -m 'Add cache-busting so site updates show on next load *)"
     ]
   }
 }

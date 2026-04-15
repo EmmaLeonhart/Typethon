@@ -1,4 +1,4 @@
-import { transpile } from "./typethon.js";
+import { transpile } from "./typethon.js?v=3";
 
 const EXAMPLES = [
   {
