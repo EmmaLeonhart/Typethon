@@ -1,0 +1,35 @@
+{
+  "name": "typethon",
+  "version": "0.0.1",
+  "description": "TypeScript syntax, Python runtime ABI. Transpile a restricted TS subset to Python.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test --import tsx test/*.test.ts",
+    "site": "npm run build && node scripts/build-site.mjs"
+  },
+  "keywords": [
+    "typescript",
+    "python",
+    "transpiler"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
