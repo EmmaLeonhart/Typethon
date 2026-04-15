@@ -2,6 +2,11 @@
 
 > TypeScript syntax. Python runtime ABI.
 
+**[Try it in your browser →](https://emmaleonhart.github.io/Typethon/)**
+
+The live demo runs the transpiler client-side: pick an example, edit the
+TypeScript, and watch the Python update in real time.
+
 ## What this is
 
 A transpiler from a restricted subset of TypeScript to Python. The output
@@ -73,8 +78,30 @@ arrow function bodies that aren't single expressions, template literal
 interpolation. The transpiler passes unrecognized constructs through
 verbatim, so you can incrementally hand-edit the output.
 
+## Two implementations, same transpiler
+
+The transpiler exists in two parallel ports:
+
+- **Python** (`typethon/`) — install with `pip install -e .`, run via the
+  `typethon` CLI or `from typethon import transpile`.
+- **TypeScript / browser** (`src/`) — `npm install && npm run build`. The
+  browser playground in `site/` imports the compiled output, and the
+  package is structured for eventual `npm publish`.
+
+Both produce the same Python output (modulo whitespace).
+
 ## Tests
 
 ```
-pytest
+pytest        # Python
+npm test      # TypeScript port
 ```
+
+## On the output quality
+
+The Python the transpiler emits isn't the prettiest — it's a compilation
+artifact, not maintainable code. But it's also not pathologically slow:
+no eval-string trampolines, no per-call dict lookups, no shim layers
+that would tank performance. Functions are functions, loops are loops,
+arithmetic is arithmetic. The runtime cost should track what you'd get
+from writing the equivalent code by hand.

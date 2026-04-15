@@ -9,7 +9,12 @@
       "Bash(python -m pip install -e . -q)",
       "Bash(python -m pytest -v)",
       "Bash(python *)",
-      "Bash(git commit -m 'Add MVP TypeScript -> Python transpiler *)"
+      "Bash(git commit -m 'Add MVP TypeScript -> Python transpiler *)",
+      "Bash(gh api *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(node *)"
     ]
   }
 }

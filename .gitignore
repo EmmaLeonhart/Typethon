@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
+dist-py/
 build/
 *.egg
 .eggs/
@@ -11,6 +11,12 @@ build/
 .venv/
 venv/
 env/
+
+# Node / TypeScript build
+node_modules/
+dist/
+_site/
+*.tsbuildinfo
 
 # IDE
 .vscode/

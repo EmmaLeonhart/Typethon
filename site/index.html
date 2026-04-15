@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Typethon — TypeScript → Python in your browser</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Typethon</h1>
+      <p class="tagline">
+        TypeScript syntax. Python runtime ABI. Write algorithmic code in TS,
+        run it on top of <code>numpy</code>, <code>torch</code>, and the rest
+        of the Python ecosystem.
+      </p>
+      <p class="links">
+        <a href="https://github.com/EmmaLeonhart/Typethon">GitHub</a>
+      </p>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h2>What is this?</h2>
+        <p>
+          A transpiler from a restricted subset of TypeScript to Python. The
+          output is <strong>not</strong> idiomatic Python — it is a
+          compilation artifact that happens to be valid Python so that
+          <code>import numpy</code> just works. Think of TypeScript as the
+          source language and Python as a runtime ABI you target so you can
+          reach the libraries.
+        </p>
+        <p>
+          Pick an example below, edit the TypeScript on the left, and watch
+          the Python update on the right. Everything runs locally in your
+          browser — no network calls.
+        </p>
+      </section>
+
+      <section class="playground">
+        <div class="example-picker">
+          <label for="example">Example:</label>
+          <select id="example"></select>
+        </div>
+
+        <div class="panes">
+          <div class="pane">
+            <h3>TypeScript</h3>
+            <textarea id="ts" spellcheck="false"></textarea>
+          </div>
+          <div class="pane">
+            <h3>Python</h3>
+            <pre id="py"><code></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="reference">
+        <h2>What's mapped</h2>
+        <table>
+          <thead><tr><th>TypeScript</th><th>Python</th></tr></thead>
+          <tbody>
+            <tr><td><code>function f(a: number): number { ... }</code></td><td><code>def f(a: float) -> float: ...</code></td></tr>
+            <tr><td><code>const x = 1;</code></td><td><code>x = 1</code></td></tr>
+            <tr><td><code>if (c) { } else if (d) { } else { }</code></td><td><code>if c: ... elif d: ... else: ...</code></td></tr>
+            <tr><td><code>for (let i = 0; i &lt; n; i++) { }</code></td><td><code>for i in range(n): ...</code></td></tr>
+            <tr><td><code>for (const x of xs) { }</code></td><td><code>for x in xs: ...</code></td></tr>
+            <tr><td><code>a === b</code>, <code>a !== b</code></td><td><code>a == b</code>, <code>a != b</code></td></tr>
+            <tr><td><code>a &amp;&amp; b</code>, <code>a || b</code>, <code>!a</code></td><td><code>a and b</code>, <code>a or b</code>, <code>not a</code></td></tr>
+            <tr><td><code>console.log(x)</code></td><td><code>print(x)</code></td></tr>
+            <tr><td><code>true</code> / <code>false</code> / <code>null</code></td><td><code>True</code> / <code>False</code> / <code>None</code></td></tr>
+            <tr><td><code>number[]</code>, <code>Array&lt;T&gt;</code></td><td><code>list[float]</code>, <code>list[T]</code></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="reference">
+        <h2>File-level pragmas</h2>
+        <p>
+          Declare which Python libraries the file expects with a comment at
+          the top:
+        </p>
+        <pre><code>// @typethon target: python
+// @typethon import: numpy as np
+// @typethon import: pandas as pd</code></pre>
+        <p>The transpiler emits the matching <code>import</code> statements.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Typethon is early. The output is intentionally crude — it's a
+        compilation target, not maintainable code. Open an issue on
+        <a href="https://github.com/EmmaLeonhart/Typethon">GitHub</a> with
+        TypeScript that doesn't transpile cleanly.
+      </p>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
